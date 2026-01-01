@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vani 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #fff8dc, #fff);
+  color: #333;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+button {
+  background: #ffdf6c;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #ffd633;
+}
+
+.sunflower {
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.fade {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sticker placeholders */
+.stickers {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.stickers img {
+  width: 80px;
+}
+
+/* Proposal buttons */
+.choice {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#noBtn {
+  background: #eee;
+  position: relative;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #ffdf6c;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<!-- Page 1 -->
+<div id="page1" class="fade">
+  <div class="sunflower">🌻</div>
+  <h2>Hi Vani 💛</h2>
+  <p>
+    If you’re here…<br>
+    it means you clicked a suspicious link<br>
+    from someone who really likes you 😌
+  </p>
+  <small>(Yes, I remembered this time)</small><br>
+  <button onclick="next(1)">Okay… I’m curious</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="hidden">
+  <p>
+    We met online.<br>
+    Out of all places.<br>
+    Out of all people.
+  </p>
+  <p>
+    <strong>23rd October 2025 🌙</strong><br>
+    Somehow… that date feels important.
+  </p>
+  <button onclick="next(2)">Keep going, mi amor 💛</button>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="hidden">
+  <p>
+    Sometimes we talk so much…<br>
+    Sometimes we smoke a little too much 🌿😶‍🌫️<br>
+    And sometimes we forget what we were saying.
+  </p>
+  <p>
+    But somehow…<br>
+    I never forget <strong>you</strong>.
+  </p>
+  <button onclick="next(3)">Okay wow 😭 continue</button>
+</div>
+
+<!-- Page 4 -->
+<div id="page4" class="hidden">
+  <p>
+    You’re calm.<br>
+    You’re cute.<br>
+    And there’s something about you that feels… magical ✨
+  </p>
+  <p>
+    Like sunshine ☀️<br>
+    Like a sunflower 🌻<br>
+    Like Mexico in my heart 🇲🇽
+  </p>
+
+  <!-- Stickers -->
+  <div class="stickers">
+    <img src="sticker1.png" alt="us">
+    <img src="sticker2.png" alt="us">
+  </div>
+
+  <button onclick="next(4)">You’re making me smile</button>
+</div>
+
+<!-- Page 5 -->
+<div id="page5" class="hidden">
+  <p>
+    We keep saying…<br>
+    we’ve known each other in a previous life.
+  </p>
+  <p>
+    Maybe that’s why being with you<br>
+    feels so natural.
+  </p>
+  <button onclick="next(5)">Tell me more</button>
+</div>
+
+<!-- Proposal -->
+<div id="page6" class="hidden">
+  <h2 id="name"></h2>
+  <p>
+    I want to know you more in this life.<br>
+    I want you by my side…<br>
+    as I will be by your side.<br><br>
+    <strong>Siempre, mi amor 💛</strong>
+  </p>
+  <h2>Will you be my girlfriend?</h2>
+
+  <div class="choice">
+    <button onclick="yes()">YES 💛</button>
+    <button id="noBtn">NO 😅</button>
+  </div>
+</div>
+
+<!-- Final -->
+<div id="final" class="hidden">
+  <h2>Hi my girlfriend 🌻</h2>
+  <p>
+    Te quiero mucho, Vani 💛<br>
+    This is just the beginning.
+  </p>
+</div>
+
+</div>
+
+<script>
+let pages = ["page1","page2","page3","page4","page5","page6"];
+
+function next(n){
+  document.getElementById(pages[n-1]).classList.add("hidden");
+  document.getElementById(pages[n]).classList.remove("hidden");
+  document.getElementById(pages[n]).classList.add("fade");
+}
+
+// Animated name
+let nameText = "Vani 💛";
+let i = 0;
+let nameEl = document.getElementById("name");
+
+function typeName(){
+  if(i < nameText.length){
+    nameEl.innerHTML += nameText.charAt(i);
+    i++;
+    setTimeout(typeName, 150);
+  }
+}
+setTimeout(typeName, 5000);
+
+// NO button moves
+document.getElementById("noBtn").addEventListener("mouseover", ()=>{
+  document.getElementById("noBtn").style.transform =
+    `translate(${Math.random()*60-30}px, ${Math.random()*60-30}px)`;
+});
+
+// YES
+function yes(){
+  document.getElementById("page6").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  confetti();
+}
+
+// Confetti
+function confetti(){
+  for(let i=0;i<40;i++){
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100 + "vw";
+    c.style.animationDuration = (Math.random()*2+2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
