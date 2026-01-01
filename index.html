@@ -117,9 +117,10 @@ button:hover {
 
 <body>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
 
 <div class="container">
 
@@ -132,8 +133,8 @@ button:hover {
     it means you clicked a suspicious link<br>
     from someone who really likes you 😌
   </p>
-  <small>(Yes, I remembered this time)</small><br>
-  <button onclick="next(1)">Okay… I’m curious</button>
+  <small>🎶 Turn your volume up</small>
+  <button onclick="playMusic(); next(1)">Okay… I’m curious</button>
 </div>
 
 <!-- Page 2 -->
@@ -236,6 +237,13 @@ function next(n){
   document.getElementById(pages[n]).classList.add("fade");
 }
 
+
+function playMusic() {
+  let music = document.getElementById("bgMusic");
+  music.volume = 0.5;
+  music.play();
+}
+  
 // Animated name
 let nameText = "Vani 💛";
 let i = 0;
@@ -278,3 +286,4 @@ function confetti(){
 
 </body>
 </html>
+
