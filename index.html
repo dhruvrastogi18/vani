@@ -117,7 +117,7 @@ button:hover {
 
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -133,8 +133,10 @@ button:hover {
     it means you clicked a suspicious link<br>
     from someone who really likes you 😌
   </p>
-  <small>🎶 Turn your volume up</small>
-  <button onclick="playMusic(); next(1)">Okay… I’m curious</button>
+  <small>(🎶 Turn your volume up</small><br>
+  <br><br>
+  <button onclick="startExperience()">▶️ Start with music</button>
+  <button>Okay… I’m curious</button>
 </div>
 
 <!-- Page 2 -->
@@ -238,11 +240,19 @@ function next(n){
 }
 
 
-function playMusic() {
-  let music = document.getElementById("bgMusic");
-  music.volume = 0.5;
-  music.play();
+function startExperience() {
+  const music = document.getElementById("bgMusic");
+
+  music.volume = 0.6;
+  music.currentTime = 0;
+
+  music.play().then(() => {
+    next(1);
+  }).catch(err => {
+    alert("Please tap again to enable music 💛");
+  });
 }
+
   
 // Animated name
 let nameText = "Vani 💛";
@@ -286,4 +296,5 @@ function confetti(){
 
 </body>
 </html>
+
 
